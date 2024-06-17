@@ -1,0 +1,10 @@
+.Login_main{
+    height: auto;
+    padding: 10px;
+}
+
+.Login_main>p{
+font-weight: 500;
+color: white;
+background-color: black;
+}

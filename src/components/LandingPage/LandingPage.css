@@ -1,0 +1,19 @@
+.Landing_main h1 {
+
+    font-size: 200px;
+    color: rgba(245, 245, 245, 0.593);
+
+}
+
+.Landing_main h4 {
+    font-size: 100px;
+    color: rgba(255, 234, 0, 0.664);
+}
+
+.Landing_main {
+    text-align: center;
+}
+
+#log-out-btn {
+    margin-bottom: 60px;
+}

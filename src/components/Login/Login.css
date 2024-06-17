@@ -1,0 +1,39 @@
+.Login_main {
+    color: white;
+
+    backdrop-filter: blur(10px);
+    width: 400px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    border: rgb(255, 255, 255) solid 1px;
+
+}
+
+.Login_head {
+    text-align: center;
+}
+
+.Login_one {
+    width: 80%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.Login_two {
+    width: 80%;
+}
+
+.Login_btn {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
