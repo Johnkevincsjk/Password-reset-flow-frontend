@@ -8,3 +8,10 @@ font-weight: 500;
 color: white;
 background-color: black;
 }
+
+.Login-forms{
+
+    p{
+        margin-bottom: 5px;
+    }
+}
