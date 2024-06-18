@@ -6,6 +6,7 @@ import axios from 'axios'
 import { toast } from 'react-toastify';
 import { motion } from 'framer-motion'
 import { useFormik } from "formik"
+import Login_val from './Login_validation'
 
 
 export default function Login() {
@@ -33,17 +34,19 @@ export default function Login() {
     //     }
     // }
 
-    const { handleBlur, handleChange, values, handleSubmit, errors } = useFormik({
+    const { handleBlur, handleChange, values, handleSubmit, errors, resetForm } = useFormik({
         initialValues: {
             Mailid: "",
             Password: ""
         },
+        validationSchema: Login_val,
 
         onSubmit: async (values) => {
             try {
                 const resp = await axios.post('http://localhost:8000/resetflow/loginUser', values)
                 if (resp.data.Error) {
                     toast.error(resp.data.Feedback)
+                    resetForm()
                 } else {
                     Nav('/LandingPage')
                     toast.success(resp.data.Feedback)
@@ -61,7 +64,7 @@ export default function Login() {
             <div className="Login_head">
                 <h5>Login</h5>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form className='Login-forms' onSubmit={handleSubmit}>
                 <div className="Login_one">
                     <p>Username</p>
                     <div className="input-group mb-3">
@@ -71,7 +74,8 @@ export default function Login() {
                             onBlur={handleBlur}
                             value={values.Mailid}
 
-                            type="email" placeholder='enter mail id' className="form-control" aria-label="Text input with checkbox" />
+                            type="email" placeholder='enter mail id' className="form-control w-100" />
+                        <p className='input_errors'>{errors.Mailid && <small>{errors.Mailid}</small>}</p>
                     </div>
 
                 </div>
@@ -83,7 +87,8 @@ export default function Login() {
                             onChange={handleChange}
                             onBlur={handleBlur}
                             value={values.Password}
-                            type="password" placeholder='enter password' className="form-control" aria-label="Text input with checkbox" />
+                            type="password" placeholder='enter password' className="form-control w-100" aria-label="Text input with checkbox" />
+                        <p className='input_errors'>{errors.Password && <small>{errors.Password}</small>}</p>
                     </div>
                 </div>
                 <motion.div whileHover={{ scale: 1.2 }} className="Login_btn">
@@ -91,7 +96,7 @@ export default function Login() {
                 </motion.div>
             </form>
             <Link to={'/Resetpassword'}>Forgot Password</Link>
-            <p>Not a member ? <Link to={'/Signin'}>Join the clan !</Link></p>
+            <p >Not a member ? <Link to={'/Signin'}>Join the clan !</Link></p>
 
 
         </div>

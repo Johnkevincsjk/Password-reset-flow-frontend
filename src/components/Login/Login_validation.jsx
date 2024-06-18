@@ -1,11 +1,12 @@
-import * as Yup from "yup"
+import * as yup from "yup"
 
-const Login_val = Yup.object({
-    Mailid: Yup.string().email("Enter valid mail id").required("Enter mail id")
+const Login_val = yup.object({
+    Mailid: yup.string().email("Enter valid mail id").required("Enter mail id"),
+    Password: yup.string().required("Enter Password")
 })
 
 
 
 
 
-export default  Login_val
+export default Login_val
