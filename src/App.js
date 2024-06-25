@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route path='/' Component={Login} />
         <Route path='/Signin' Component={Signin} />
-        <Route path='/Resetpassword' Component={Reset} />
+        <Route path='/Password_reset' Component={Reset} />
         <Route path="/NewPassword/:ramdamstring" element={<Npassword />} />
         <Route path='/LandingPage' Component={LandingPage} />
 

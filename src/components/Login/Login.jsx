@@ -43,13 +43,13 @@ export default function Login() {
 
         onSubmit: async (values) => {
             try {
-                const resp = await axios.post('http://localhost:8000/resetflow/loginUser', values)
-                if (resp.data.Error) {
-                    toast.error(resp.data.Feedback)
-                    resetForm()
-                } else {
+                const resp = await axios.post('http://localhost:8000/api/resetflow/loginUser', values)
+                if (resp.data.Feedback === 'Login Successfully') {
+                    toast.success('Login Successfully')
                     Nav('/LandingPage')
-                    toast.success(resp.data.Feedback)
+                } else {
+                    resetForm()
+                    toast.error('Mail id or password is invaild')
                 }
             } catch (error) {
                 toast.error(error.response?.data?.Feedback)
@@ -95,7 +95,7 @@ export default function Login() {
                     <Button type="submit" id='' className="btn btn-success">Login</Button>
                 </motion.div>
             </form>
-            <Link to={'/Resetpassword'}>Forgot Password</Link>
+            <Link to={'/Password_reset'}>Forgot Password</Link>
             <p >Not a member ? <Link to={'/Signin'}>Join the clan !</Link></p>
 
 
