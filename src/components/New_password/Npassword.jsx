@@ -25,7 +25,7 @@ export default function Npassword() {
         validationSchema: Npassword_validation,
         onSubmit: async (values, { resetForm }) => {
             try {
-                const resp = await axios.post(`https://password-reset-flow-backend-w563.onrender.com/api/resetflow/NewPassword/${ramdamstring}`, values);
+                const resp = await axios.post(`https://password-reset-flow-backend-r21n.onrender.com/api/resetflow/NewPassword/${ramdamstring}`, values);
                 console.log(resp)
 
                 if (resp.data.message == 'Password reset successfully') {

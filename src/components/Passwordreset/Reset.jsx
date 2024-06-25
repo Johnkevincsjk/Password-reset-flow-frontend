@@ -28,7 +28,7 @@ function PasswordResetForm() {
         onSubmit: async (values, { resetForm }) => {
             try {
                 console.log('Form values:', values); // Debugging: Check form values
-                const resp = await axios.post('https://password-reset-flow-backend-w563.onrender.com/api/resetflow/Password_reset', values);
+                const resp = await axios.post('https://password-reset-flow-backend-r21n.onrender.com/api/resetflow/Password_reset', values);
                 console.log('Server response:', resp); // Debugging: Check server response
                 if (resp.data.message === 'Reset email sent') {
                     toast.success('Reset mail sent successfully');
