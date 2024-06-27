@@ -11,37 +11,16 @@ import Login_val from './Login_validation'
 
 export default function Login() {
     const Nav = useNavigate()
-    // const [Mailid, setMailid] = useState('')
-    // const [Password, setPassword] = useState('')
-
-    // const handleLogin = async (e) => {
-    //     e.preventDefault()
-    //     const login_crd = { Mailid, Password }
 
 
-    //     try {
-    //         const resp = await axios.post('http://localhost:8000/resetflow/loginUser', login_crd)
-
-    //         if (resp.data.Error) {
-    //             toast.error(resp.data.Feedback)
-    //         } else {
-    //             Nav('/LandingPage')
-    //             toast.success(resp.data.Feedback)
-    //         }
-    //     } catch (error) {
-    //         toast.error(error.response?.data?.Feedback)
-    //         console.log(error)
-    //     }
-    // }
-
-    const { handleBlur, handleChange, values, handleSubmit, errors, resetForm } = useFormik({
+    const formik = useFormik({
         initialValues: {
             Mailid: "",
             Password: ""
         },
         validationSchema: Login_val,
 
-        onSubmit: async (values) => {
+        onSubmit: async (values, { resetForm }) => {
             try {
                 const resp = await axios.post('https://password-reset-flow-backend-r21n.onrender.com/api/resetflow/loginUser', values)
                 if (resp.data.Feedback === 'Login Successfully') {
@@ -64,18 +43,21 @@ export default function Login() {
             <div className="Login_head">
                 <h5>Login</h5>
             </div>
-            <form className='Login-forms' onSubmit={handleSubmit}>
+            <form className='Login-forms' onSubmit={formik.handleSubmit}>
                 <div className="Login_one">
                     <p>Username</p>
                     <div className="input-group mb-3">
                         <input
                             name='Mailid'
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.Mailid}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.Mailid}
 
                             type="email" placeholder='enter mail id' className="form-control w-100" />
-                        <p className='input_errors'>{errors.Mailid && <small>{errors.Mailid}</small>}</p>
+                        {formik.touched.Mailid && formik.errors.Mailid && (
+                            <p className='input_errors'><small>{formik.errors.Mailid}</small></p>
+                        )}
+
                     </div>
 
                 </div>
@@ -84,11 +66,14 @@ export default function Login() {
                     <div className="input-group mb-3">
                         <input
                             name='Password'
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.Password}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.Password}
                             type="password" placeholder='enter password' className="form-control w-100" aria-label="Text input with checkbox" />
-                        <p className='input_errors'>{errors.Password && <small>{errors.Password}</small>}</p>
+                        {/* <p className='input_errors'>{errors.Password && <small>{errors.Password}</small>}</p> */}
+                        {formik.touched.Password && formik.errors.Password && (
+                            <p className='input_errors'><small>{formik.errors.Password}</small></p>
+                        )}
                     </div>
                 </div>
                 <motion.div whileHover={{ scale: 1.2 }} className="Login_btn">
